@@ -11,10 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.grigan.test_task_cbrf.entity.ValCurs;
 import ru.grigan.test_task_cbrf.entity.Valute;
 
-import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +37,8 @@ public class MyService {
         Map<Double, String> map = curs.getValute().values().stream().collect(Collectors.toMap(
                 k -> (Math.abs(k.getValue()- k.getPrevious())), Valute::getName
         ));
-        TreeMap<Double, String> treeMap = new TreeMap<>(map);
+        TreeMap<Double, String> treeMap = new TreeMap<>(Comparator.reverseOrder());
+        treeMap.putAll(map);
         List<String> collect = treeMap.values().stream().limit(5).collect(Collectors.toList());
         return curs.getValute().values().stream()
                 .filter(v-> collect.contains(v.getName()))
