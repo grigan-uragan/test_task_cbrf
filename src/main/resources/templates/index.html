@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Hello</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Valute</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="valute : ${valutes}">
+        <td th:text="${valute.name}"></td>
+        <td th:text="${valute.value}"></td>
+        <td th:text="${valute.previous}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
